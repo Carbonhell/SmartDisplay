@@ -50,7 +50,11 @@ pub const WIFI_PASS: &str = ""; // FILL YOUR PW HERE
 
 // for AWS IoT Core, be sure to use the mqtts protocol and use the -ats endpoint!
 pub const MQTT_ENDPOINT: &str = "";
-pub const MQTT_CLIENT_ID: &str = "esp32-epaper-main";
+// The MQTT client id MUST be unique, or else the different devices will kick each other out with an undocumented error code 119
+#[cfg(feature = "epd2in9_v2")]
+pub const MQTT_CLIENT_ID: &str = "esp32-epaper-main-wokwi";
+#[cfg(feature = "epd5in83_v2")]
+pub const MQTT_CLIENT_ID: &str = "esp32-epaper-main-real";
 pub const MQTT_TOPIC_NAME: &str = "F3/P6";
 
 // Display points
@@ -131,7 +135,7 @@ fn main() -> anyhow::Result<()> {
     let _mqtt_client: EspMqttClient<ConnState<MessageImpl, EspError>> = setup_mqtt_client(sender)?;
 
     loop {
-        Delay::delay_ms(3000);
+        Delay::delay_ms(1000);
         // Check for new messages every 3 seconds for 2 seconds
         let message = receiver.recv_timeout(Duration::from_millis(2000));
         if let Ok(message) = message {

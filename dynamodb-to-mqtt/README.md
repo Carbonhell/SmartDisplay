@@ -79,5 +79,8 @@ openssl x509 -in mycert.crt -out mycert.pem -outform PEM
 Converting pkcs#1 (default amazon) to #8:
 openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in pkcs1.key -out pkcs8.key
 
+Testing certificate validity with curl
+curl --tlsv1.2 --cacert AmazonRootCA1.pem --cert certificate.crt --key private.key --request POST --data "{ \"message\": \"Hello, world\" }" "https://a3p04gu2a31pcg-ats.iot.eu-central-1.amazonaws.com:8443/topics/topic?qos=1"
+
 # Future nice-to-have
 1) Caching of the currently retained message per topic to avoid useless mqtt communication when no changes are detected

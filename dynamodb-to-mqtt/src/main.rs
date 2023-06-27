@@ -9,6 +9,7 @@ use tracing::log::info;
 use serde_json::json;
 use url::form_urlencoded::byte_serialize;
 
+// If you're using AWS IoT Core (you could use other brokers too if they offer a HTTP interface), be sure to specify the port 8443, or else you'll get a code 403.
 const AWS_IOT_ENDPOINT: &str = "";
 const DYNAMODB_ACTIVE_EVENTS_TABLE: &str = "active_events";
 const FIELD_ID: &str = "id";
