@@ -1,0 +1,3 @@
+/target
+/certificates/*
+!/certificates/.gitkeep

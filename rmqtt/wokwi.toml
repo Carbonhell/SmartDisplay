@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+elf = "target/xtensa-esp32-espidf/debug/rust-esp32-epaper-mqtt"
+firmware = "target/xtensa-esp32-espidf/debug/rust-esp32-epaper-mqtt"

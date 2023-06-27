@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"author": "Francesco",
+	"editor": "wokwi",
+	"parts": [
+	  {
+		"type": "wokwi-esp32-devkit-v1",
+		"id": "esp",
+		"top": 165.38,
+		"left": 124.47,
+		"attrs": { "builder": "rust-std-esp" }
+	  },
+	  { "type": "board-epaper-2in9", "id": "epd1", "top": -29.39, "left": 126.54, "attrs": {} }
+	],
+	"connections": [
+	  [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+	  [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+	  [ "epd1:VCC", "esp:VIN", "violet", [ "h-92.47", "v258.33" ] ],
+	  [ "epd1:GND", "esp:GND.2", "gray", [ "h-81.97", "v239.23" ] ],
+	  [ "epd1:DIN", "esp:D23", "gray", [ "h-143.7", "v132.9" ] ],
+	  [ "epd1:CLK", "esp:D18", "black", [ "h-101.32", "v200.2" ] ],
+	  [ "epd1:BUSY", "esp:D4", "violet", [ "h-133.58", "v276.97" ] ],
+	  [ "epd1:RST", "esp:D21", "blue", [ "h-125.99", "v210.27" ] ],
+	  [ "epd1:DC", "esp:D22", "red", [ "h-117.14", "v171.77" ] ],
+	  [ "epd1:CS", "esp:D5", "green", [ "h-108.28", "v219.47" ] ]
+	],
+	"serialMonitor": { "display": "terminal" },
+	"dependencies": {}
+  }
