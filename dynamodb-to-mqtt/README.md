@@ -10,6 +10,8 @@ openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in pkcs1.key -out privat
 
 You also need to change the AWS_IOT_ENDPOINT const in the main.rs file to the ATS endpoint of your profile MQTT endpoint. You can find it in the AWS console MQTT client.
 
+The AWS endpoint is hardcoded as localhost (for localstack).
+
 # How to run
 cargo build --bin dynamodb-to-mqtt
 cargo lambda watch
