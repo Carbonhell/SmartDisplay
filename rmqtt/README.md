@@ -5,9 +5,16 @@ To simulate the hardware on Wokwi, you'll need the [VSCode extension](https://do
 
 You will also need [cargo espflash](https://github.com/esp-rs/espflash/blob/main/cargo-espflash/README.md#installation) if you plan to run the code on real hardware.
 
+## Windows long path limit
+On windows, there's a limit to how long paths can be. This causes issue with ESP32 projects and CMake.
+You can bypass this limit through a symlink. For example, you can add a symlink to your Desktop folder, which should generate a short enough path (the limit is 260):
+mklink /d C:\Users\{your_username}\Desktop\rmqtt path_to_rmqtt_folder
+
+After this, trigger the flashing through the symlinked folder.
+
 ## Configuration
 In the main.rs file, you will find several consts that need to have the correct values for the code to work.
--) WIFI_SSID & WIFI_PASS: for Wokwi, they're already set. If you want to use real hardware, you'll need to put the credentials of your access point.
+-) WIFI_SSID & WIFI_PASS: for Wokwi, they're already set. If you want to use real hardware, you'll need to put the credentials of your access point. Keep in mind that ESP32 boards (except new ones) do not support 5GHz, so if you have a SSID for each frequence, use the 2.4GHz credentials.
 -) MQTT_ENDPOINT: change this to the ATS endpoint of your IoT Core AWS profile. It should also work with other MQTT providers, such as [EMQX](https://www.emqx.com/en/mqtt/public-mqtt5-broker).
 -) MQTT_CLIENT_ID: This should be the thing's name if you're using AWS IoT core.
 -) MQTT_TOPIC_NAME: Be sure to use a topic you have access to (check the policy attached to the certificare you're using)
@@ -29,7 +36,7 @@ And then start wok
 
 ## Real hardware
 ```sh
- cargo espflash --release --monitor --partition-table partition-table.csv --features="epd5in83_v2,load_certs"
+cargo espflash --release --monitor --partition-table partition-table.csv --features="epd5in83_v2,load_certs"
 ```
 
 ---
