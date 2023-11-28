@@ -72,7 +72,8 @@ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 ### DynamoDB
 
 Table creation:
-````sh`
+
+```sh
 aws dynamodb create-table --table-name active_events --key-schema AttributeName=id,KeyType=HASH --attribute-definitions AttributeName=id,AttributeType=S --billing-mode PAY_PER_REQUEST --region eu-central-1 --endpoint-url http://localhost:4566
 ```
 
